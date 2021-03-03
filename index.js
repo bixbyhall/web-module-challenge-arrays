@@ -234,14 +234,37 @@ Use the getRandomFlavors function and new arrays below to do the following:
 */
 
 
-function getRandomFlavors(orig, curr, seas, regi){
-    let randomFlavors = [];
-    let arrayList = (orig, curr, seas, regi);
-    while (is31Flavors(randomFlavors) === false) {
-        while (i <= arrayList.length) {
-            randomFlavors.push(arrayList[i][random])
-        }
+function getRandomInt(max) {
+
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+function getRandomFlav(arr1, arr2, arr3, arr4) {
+
+    let arrList = [arr1, arr2, arr3, arr4];
+    let randomArray = arrList[getRandomInt(4)];
+    let randomFlavor = randomArray[getRandomInt(randomArray.length)];
+
+    return randomFlavor;
+}
+
+function pushFlavor(output_array, arr1, arr2, arr3, arr4) {
+    let randomFlavor = getRandomFlav(arr1, arr2, arr3, arr4);
+    if (output_array.includes(randomFlavor) === false) {
+        output_array.push(randomFlavor);
+    } else {
+        pushFlavor(output_array, arr1, arr2, arr3, arr4);
     }
+}
+
+function getRandomFlavors(arr1, arr2, arr3, arr4) {
+
+    let randomFlavors = [];
+    while (is31Flavors(randomFlavors) === false) {
+        pushFlavor(randomFlavors, arr1, arr2, arr3, arr4);
+    }
+    
+    return randomFlavors;
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
